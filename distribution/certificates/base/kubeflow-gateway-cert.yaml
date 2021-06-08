@@ -8,6 +8,6 @@ spec:
   issuerRef:
     name: gateways-issuer
     kind: ClusterIssuer
-  commonName: <<__subdomain_dashboard__>>.<<__domain__>>
+  commonName: kubeflow.cluster.aaw.cloud.statcan.ca
   dnsNames:
-    - <<__subdomain_dashboard__>>.<<__domain__>>
+    - kubeflow.cluster.aaw.cloud.statcan.ca

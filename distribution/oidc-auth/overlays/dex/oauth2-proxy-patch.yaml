@@ -40,16 +40,16 @@ spec:
       - name: extraArgs.skip-provider-button
         value: "true"
       - name: extraArgs.cookie-domain
-        value: .<<__domain__>>
+        value: .cluster.aaw.cloud.statcan.ca
       - name: extraArgs.whitelist-domain
-        value: .<<__domain__>>
+        value: .cluster.aaw.cloud.statcan.ca
       - name: extraArgs.oidc-issuer-url
-        value: <<__oidc.issuer__>>
+        value: https://auth.cluster.aaw.cloud.statcan.ca
       - name: extraArgs.login-url
-        value: "<<__oidc.issuer__>>/auth"
+        value: "https://auth.cluster.aaw.cloud.statcan.ca/auth"
       - name: extraArgs.oidc-jwks-url
-        value: "<<__oidc.issuer__>>/keys"
+        value: "https://auth.cluster.aaw.cloud.statcan.ca/keys"
       - name: extraArgs.redeem-url
-        value: "<<__oidc.issuer__>>/token"
+        value: "https://auth.cluster.aaw.cloud.statcan.ca/token"
       - name: extraArgs.skip-oidc-discovery
         value: "true"

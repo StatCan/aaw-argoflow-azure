@@ -40,17 +40,17 @@ spec:
       - name: extraArgs.skip-provider-button
         value: "true"
       - name: extraArgs.cookie-domain
-        value: .<<__domain__>>
+        value: .cluster.aaw.cloud.statcan.ca
       - name: extraArgs.whitelist-domain
-        value: .<<__domain__>>
+        value: .cluster.aaw.cloud.statcan.ca
       - name: extraArgs.login-url
-        value: "<<__oidc.issuer__>>/auth/realms/kubeflow/protocol/openid-connect/auth"
+        value: "https://auth.cluster.aaw.cloud.statcan.ca/auth/realms/kubeflow/protocol/openid-connect/auth"
       - name: extraArgs.redeem-url
-        value: "<<__oidc.issuer__>>/auth/realms/kubeflow/protocol/openid-connect/token"
+        value: "https://auth.cluster.aaw.cloud.statcan.ca/auth/realms/kubeflow/protocol/openid-connect/token"
       - name: extraArgs.profile-url
-        value: "<<__oidc.issuer__>>/auth/realms/kubeflow/protocol/openid-connect/userinfo"
+        value: "https://auth.cluster.aaw.cloud.statcan.ca/auth/realms/kubeflow/protocol/openid-connect/userinfo"
       - name: extraArgs.validate-url
-        value: "<<__oidc.issuer__>>/auth/realms/kubeflow/protocol/openid-connect/userinfo"
+        value: "https://auth.cluster.aaw.cloud.statcan.ca/auth/realms/kubeflow/protocol/openid-connect/userinfo"
       - name: extraArgs.scope
         value: email
       - name: extraArgs.scope

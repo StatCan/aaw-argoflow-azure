@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/statcan/argoflow-azure.git
-    targetRevision: 75b9142f0367ff8fdacb4b38f8213ce0d793e58e
+    targetRevision: ee6f1c734c42c94f9c1723f9bc8536d8e512668d
     path: distribution/argocd/overlays/private-repo
     kustomize:
       version: v4.0.5

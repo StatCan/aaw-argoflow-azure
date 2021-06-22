@@ -7,7 +7,7 @@ spec:
   gateways:
   - kubeflow/kubeflow-gateway
   hosts:
-  - <<__subdomain_dashboard__>>.<<__domain__>>
+  - kubeflow.cluster.aaw.cloud.statcan.ca
   http:
   - headers:
       request:

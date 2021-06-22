@@ -9,7 +9,7 @@ spec:
   gateways:
   - auth-gateway
   hosts:
-  - <<__subdomain_auth__>>.<<__domain__>>
+  - auth.cluster.aaw.cloud.statcan.ca
   http:
   - route:
     - destination:

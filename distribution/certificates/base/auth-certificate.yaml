@@ -8,6 +8,6 @@ spec:
   issuerRef:
     name: gateways-issuer
     kind: ClusterIssuer
-  commonName: <<__subdomain_auth__>>.<<__domain__>>
+  commonName: auth.cluster.aaw.cloud.statcan.ca
   dnsNames:
-    - <<__subdomain_auth__>>.<<__domain__>>
+    - auth.cluster.aaw.cloud.statcan.ca

@@ -17,5 +17,5 @@ spec:
   - to:
     - operation:
         hosts:
-        - <<__subdomain_dashboard__>>.<<__domain__>>
-        - <<__subdomain_serving__>>.<<__domain__>>
+        - kubeflow.cluster.aaw.cloud.statcan.ca
+        - serving.cluster.aaw.cloud.statcan.ca

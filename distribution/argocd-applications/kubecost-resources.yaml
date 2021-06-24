@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/statcan/argoflow-azure.git
-    targetRevision: 7baff377d6199ee8658cba166d4e129b944787bd
+    targetRevision: 90b17984544e4c5fae84cbf5a92a2c086b1bd334
     path: distribution/kubecost-resources
     kustomize:
       version: v4.0.5

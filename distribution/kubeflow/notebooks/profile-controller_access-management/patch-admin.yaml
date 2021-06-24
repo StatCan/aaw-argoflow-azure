@@ -4,4 +4,4 @@ metadata:
   name: profiles-config
   namespace: kubeflow
 data:
-  ADMIN: "info@aaw.cloud.statcan.ca"
+  ADMIN: "nancy.badran@canada.ca"

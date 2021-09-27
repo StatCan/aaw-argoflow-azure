@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+patchesStrategicMerge:
+- cluster-role.yaml
+# - config-map.yaml
+# - service.yaml
+resources:
+- github.com/kubeflow/pipelines/manifests/kustomize/third-party/argo/base?ref=4451c7d453a9e7878613ab81200a5d19ccf0e3e9
+# - ../../../.cache/manifests/manifests-1.2-branch/argo/base_v3
+# - github.com/kubeflow/manifests/contrib/seldon/seldon-core-operator/base?ref=48ea3f8ed74ae4d14520119a9f3d13c16fb80110 # tag=v1.3.1

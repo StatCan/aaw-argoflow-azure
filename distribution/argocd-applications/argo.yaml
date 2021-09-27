@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: http://gitserver.git/argoflow-azure.git
+    targetRevision: master
+    path: distribution/kubeflow/pipelines/argo
+    kustomize:
+      version: v4.0.5
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

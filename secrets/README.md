@@ -57,6 +57,21 @@ You should be able to log into kubeflow once everything in ArgoCD is green!
 
 ## Debugging
 
+### Issues with appications not in sync or unhealthy
+
+This happens quite often, especiallya after the `make deploy`. Some applications need to be finished before others mnmay start. Some also need a little boost. It might be done by clicking on the application, Then the little triangkle -> `Hard Refresh` and finally `Sync`.
+
+- check istio -> hard refresh -> synchrone
+- check istio-resources
+- central-dashboard
+-> if no mimages `make custom-images`
+- jupyter-web-app
+- check all the controllers - notebook - prob etc
+- profile contoller
+- profiles
+- pipelines
+- certificates : especially if you cannot access the `kubeflow.aaw.cloud.statcan.ca`
+
 ### Error: Connection Refused
 
 This happens if the services aren't ready yet. Make sure that the services in ArgoCD are green. (Especially Istio, Central Dashboard, and the Profile controller)

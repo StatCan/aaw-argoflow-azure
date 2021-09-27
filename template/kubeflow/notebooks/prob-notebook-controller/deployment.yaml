@@ -22,7 +22,7 @@ spec:
       containers:
       - name: notebook-auth-policy-checker
         imagePullPolicy: IfNotPresent
-        image: k8scc01covidacr.azurecr.io/prob-notebook-controller:latest
+        image: k8scc01covidacr.azurecr.io/prob-notebook-controller:dc1cd29e818c413b24385b406f4c22a0bdbf009a
         resources:
           limits:
             memory: "256Mi"

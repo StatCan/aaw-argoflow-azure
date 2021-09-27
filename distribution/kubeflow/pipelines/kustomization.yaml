@@ -5,7 +5,7 @@ resources:
 - github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-multi-user-pns?ref=1c66f93f5149a8d5ed7f33895d3ebc01e662d837 # tag=1.6.0
 patchesStrategicMerge:
 - persistent-volume-claim.yaml
-# - argo/cluster-role.yaml
+- argo/workflow-controller-clusterrole.yaml
 - argo/workflow-controller-configmap.yaml
 # - argo/service.yaml
 

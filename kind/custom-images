@@ -1,7 +1,8 @@
 # These are Statcan specific images.
 # Everything in this file will get `docker pull`d
 # and then `kind load`d
-k8scc01covidacr.azurecr.io/kubeflow-pipeline/kubeflow-pipeline:c1753501
+k8scc01covidacr.azurecr.io/kubeflow-pipeline/kubeflow-pipeline:c722305c
 k8scc01covidacr.azurecr.io/kubeflow/centraldashboard:a96d1cd8523f895904051e122fa98db5c0017bd6
 k8scc01covidacr.azurecr.io/jupyter-apis:416bcb15aa542232ebc0184b97f910d5d5faa96c
 k8scc01covidacr.azurecr.io/prob-notebook-controller:dc1cd29e818c413b24385b406f4c22a0bdbf009a
+# k8scc01covidacr.azurecr.io/jupyterlab-cpu:c3513487

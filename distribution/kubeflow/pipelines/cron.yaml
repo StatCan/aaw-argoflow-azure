@@ -1,40 +1,18 @@
-# This workflow will build a docker container, publish it to Azure Container Registry, and deploy it to Azure Kubernetes Service using a helm chart.
-#
-# https://github.com/Azure/actions-workflow-samples/tree/master/Kubernetes
-#
-# To configure this workflow:
-#
-# 1. Set up the following secrets in your workspace:
-#     a. REGISTRY_USERNAME with ACR username
-#     b. REGISTRY_PASSWORD with ACR Password
-#     c. AZURE_CREDENTIALS with the output of `az ad sp create-for-rbac --sdk-auth`
-#
-# 2. Change the values for the REGISTRY_NAME, CLUSTER_NAME, CLUSTER_RESOURCE_GROUP and NAMESPACE environment variables (below).
-name: cron
-on:
-  schedule:
-    - cron:  '0 22 * * 1-5'
-
-# Environment variables available to all jobs and steps in this workflow
-env:
-  CLUSTER_NAME: aaw-prod-cc-00-aks
-  CLUSTER_RESOURCE_GROUP: aaw-prod-cc-00-rg-aks
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-
-    # Run argo
-    - name: argo
-      uses: statcan/actions/kubectl@master
-      with:
-        kubeconfig: ${{ secrets.KUBECONFIG }}
-        app: argo
-        args: delete --all-namespaces -l "scheduledworkflows.kubeflow.org/isOwnedByScheduledWorkflow=true" --older 5d
-      env:
-        OIDC_PROVIDER: "${{ secrets.OIDC_PROVIDER }}"
-        OIDC_REDIRECT_URI: "${{ secrets.OIDC_REDIRECT_URI }}"
-        OIDC_AUTH_URL: "${{ secrets.OIDC_AUTH_URL }}"
-        CLIENT_ID: "${{ secrets.CLIENT_ID }}"
-        APPLICATION_SECRET: "${{ secrets.APPLICATION_SECRET }}"
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cron
+spec:
+  concurrencyPolicy: Allow
+  schedule: "0 22 * * 1-5"
+  jobTemplate:  
+    spec:
+      template:
+        spec:
+          containers:
+          - name: cron
+            image: bitnami/kubectl:latest
+            imagePullPolicy: IfNotPresent
+            command:
+            - kubectl delete --all-namespaces -l "scheduledworkflows.kubeflow.org/isOwnedByScheduledWorkflow=true" --older 5d 
+          restartPolicy: OnFailure

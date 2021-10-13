@@ -2,17 +2,28 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: oidc-authservice-parameters
+  #Name must match whats in statefulset.yaml under envFrom/configMapRef/name
   namespace: istio-system
 data:
-  application_secret: 'XXXXXX'
+  client_secret: 'XXXXXX'
   client_id: XXXXXX
   namespace: istio-system
   oidc_auth_url: https://login.microsoftonline.com/XXXXXX/oauth2/v2.0/authorize
   oidc_provider: https://login.microsoftonline.com/XXXXXX/v2.0
-  oidc_redirect_uri: https://kubeflow.example.ca/login/oidc
+  redirect_url: https://kubeflow.example.ca/login/oidc
   skip_auth_uri: ""
-  userid-header: kubeflow-userid
-  userid-prefix: ""
+  userid_header: kubeflow-userid
+  userid_prefix: ""
+  userid_claim: preferred_username
+  oidc_scopes: profile email
+  port: "8080"
+  store_path: /var/lib/authservice/data.db
 
+
+#Lines 7,12,14-19 are changed to make use of envFrom instead of having values in statefulset.yaml and have it in 1 spot.
+#Values may differ a bit from 1.3 as I kept what we had for values in statefulset.yaml (userid_claim and oidc_scopes for example)
+# are these case sensitive / need double quotes?
+#changed 14 and 15 to have underscores instead of dashes, 
+#Renames to have correct key value: 7 application_secret changed to client_secret, 11 oidc_redirect_uri to redirect_url
 #Should override whatever is in the oidc-authservice-parameters configmap
 # We don't have control over upstream params.env so I think a strategic merge is the play here

@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+patchesStrategicMerge:
+- configmap.yaml #override what they have in params.env via their configmapgenerator upstream
+- envoy-filter.yaml
+- statefulset.yaml
+resources:
+- github.com/kubeflow/manifests/common/oidc-authservice/base?ref=48ea3f8ed74ae4d14520119a9f3d13c16fb80110 # tag=v1.3.1

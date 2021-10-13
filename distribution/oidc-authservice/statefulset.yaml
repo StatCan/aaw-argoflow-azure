@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: authservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authservice
+  serviceName: authservice
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+      labels:
+        app: authservice 
+    spec:
+      containers:
+      - name: authservice
+        image: k8scc01covidacr.azurecr.io/oidc-authservice:latest # this changed obviously 
+        imagePullPolicy: Always
+        ports:
+        - name: http-api
+          containerPort: 8080 #up to here the same w. 1.3
+        env: #in 1.3 changed to use envFrom
+        # uses the configMapGenerator in the kustomize (which uses the params.env)
+          - name: USERID_HEADER
+            value: $(userid-header)
+          - name: USERID_PREFIX
+            value: $(userid-prefix)
+          - name: USERID_CLAIM
+            value: preferred_username
+          - name: OIDC_PROVIDER
+            value: $(oidc_provider)
+          - name: OIDC_AUTH_URL
+            value: $(oidc_auth_url)
+          - name: OIDC_SCOPES
+            value: "profile email"
+          - name: REDIRECT_URL
+            value: $(oidc_redirect_uri)
+          - name: SKIP_AUTH_URI
+            value: $(skip_auth_uri)
+          - name: PORT
+            value: "8080"
+          - name: CLIENT_ID
+            value: $(client_id)
+          - name: CLIENT_SECRET
+            value: $(application_secret)
+          - name: STORE_PATH
+            value: /var/lib/authservice/data.db
+        volumeMounts:
+          - name: data
+            mountPath: /var/lib/authservice
+        readinessProbe:
+            httpGet:
+              path: /
+              port: 8081
+      securityContext:
+        fsGroup: 111
+      imagePullSecrets:
+        - name: k8scc01covidacr-registry-connection
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+              claimName: authservice-pvc
+
+# 1.3 https://github.com/kubeflow/manifests/blob/v1.3-branch/common/oidc-authservice/base/statefulset.yaml
+# 1.2 https://github.com/kubeflow/manifests/blob/v1.2-branch/istio/oidc-authservice/base/statefulset.yaml
+# Is very similar to 1.2 with a few changes and the imagePullSecrets

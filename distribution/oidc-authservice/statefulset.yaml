@@ -24,30 +24,35 @@ spec:
           containerPort: 8080 #up to here the same w. 1.3
         env: #in 1.3 changed to use envFrom
         # uses the configMapGenerator in the kustomize (which uses the params.env)
+        # we can change this to just use envFrom and use oidc-authservice-parameters
+        #just neeed to ensure that the key and values are the same 
+        #good means found in our configmap.yaml,  ??? means ???
           - name: USERID_HEADER
-            value: $(userid-header)
+            value: $(userid-header) #good
           - name: USERID_PREFIX
-            value: $(userid-prefix)
+            value: $(userid-prefix) #good
           - name: USERID_CLAIM
-            value: preferred_username
+            value: preferred_username #???? is under user_id claim in 1.3 params.env but has a different value
+            # they have USERID_CLAIM=email. this is the same in 1.2 so preferred_username may be specific to us
           - name: OIDC_PROVIDER
-            value: $(oidc_provider)
+            value: $(oidc_provider) #good 
           - name: OIDC_AUTH_URL
-            value: $(oidc_auth_url)
+            value: $(oidc_auth_url) #good 
           - name: OIDC_SCOPES
-            value: "profile email"
+            value: "profile email" #???? is in 1.3 params.env but has different value of profile email groups
+            # (1.2 also had profile email groups fwiw so maybe specific to us)
           - name: REDIRECT_URL
-            value: $(oidc_redirect_uri)
+            value: $(oidc_redirect_uri) #good
           - name: SKIP_AUTH_URI
-            value: $(skip_auth_uri)
+            value: $(skip_auth_uri) #good
           - name: PORT
-            value: "8080"
+            value: "8080" #??? is again in params.env, they keep as 8080
           - name: CLIENT_ID
-            value: $(client_id)
+            value: $(client_id) #good
           - name: CLIENT_SECRET
-            value: $(application_secret)
+            value: $(application_secret) #good
           - name: STORE_PATH
-            value: /var/lib/authservice/data.db
+            value: /var/lib/authservice/data.db # ??? they have this as well and its the same 
         volumeMounts:
           - name: data
             mountPath: /var/lib/authservice

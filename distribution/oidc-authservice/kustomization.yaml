@@ -1,8 +1,21 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 patchesStrategicMerge:
-- configmap.yaml #override what they have in params.env via their configmapgenerator upstream
-- envoy-filter.yaml
-- statefulset.yaml
+- configmap.yaml #override what they have in params.env via their configmapgenerator upstream, CHECKED
+- envoy-filter.yaml #CHECKED
+- statefulset.yaml #CHECKED
 resources:
 - github.com/kubeflow/manifests/common/oidc-authservice/base?ref=48ea3f8ed74ae4d14520119a9f3d13c16fb80110 # tag=v1.3.1
+
+# Notes
+#### params.yaml
+# Both 1.2 and 1.3 have this "params.yaml"
+# The paths under 'varReference' point to paths depending on the 'kind' so for kind EnvoyFilter its in the envoy-filter.yaml
+# In 1.3 the StatefulSet got removed (seems to be fine).
+# No more spec/workloadLabels/istio in envoyfilter is ok (as long as this value is not used somewhere which it should not). 
+# Is used in the kustomization.yaml for 'configurations'
+#### kustomization.yaml
+# theres a difference that 1.3 has a secretGenerator bit that uses secret_params.env which is whats in our configmap.yaml
+# might need to look at that.
+# From 'vars' there are a LOT of objref ConfigMap names in there. It's essentially whatever is in params.env
+# Each of these have a fieldRef/fieldPath bit that I'm unsure about as well.

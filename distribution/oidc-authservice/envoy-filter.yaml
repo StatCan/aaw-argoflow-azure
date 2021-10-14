@@ -3,10 +3,17 @@ kind: EnvoyFilter
 metadata:
   name: authn-filter
 spec:
-  workloadLabels:
-    istio: $(gatewaySelector)-kubeflow
+  #changed from workloadLabels
+  #gatewaySelector variable does not seem to exist anymore
+  workloadSelector:
+    labels:
+      istio: ingressgateway-kubeflow 
 # Notes 
 # Taken from https://github.com/StatCan/aaw-kubeflow-manifest/blob/master/kustomize/oidc-authservice/envoy-filter.yaml
 # 1.3 https://github.com/kubeflow/manifests/blob/v1.3-branch/common/oidc-authservice/base/envoy-filter.yaml
 # 1.2 https://github.com/kubeflow/manifests/blob/v1.2-branch/istio/oidc-authservice/base/envoy-filter.yaml
 
+# Looking at whats in 1.3 it seems fine, the variables in the server_uri come from the kustomization.yaml
+# The one bit I'm unsure about is on line 42 about exact: kubeflow-userid but I think it is fine. 
+## ^ if it's related to our change in configmap.yaml for the userid_claim then it might be funky
+# I dont fully understand the config in 1.3 vs 1.2 so we just pray i guess 

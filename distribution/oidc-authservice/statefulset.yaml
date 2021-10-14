@@ -39,7 +39,7 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-              claimName: authservice-pvc
+              claimName: authservice-pvc #value comes from pvc.yaml in upstream, unchanged in 1.2 -> 1.3
 
 # 1.3 https://github.com/kubeflow/manifests/blob/v1.3-branch/common/oidc-authservice/base/statefulset.yaml
 # 1.2 https://github.com/kubeflow/manifests/blob/v1.2-branch/istio/oidc-authservice/base/statefulset.yaml

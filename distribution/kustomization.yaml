@@ -26,6 +26,9 @@ resources:
 - argocd-applications/oidc-auth-on-cluster-keycloak.yaml
 # - argocd-applications/oidc-auth-external.yaml
 
+##OIDC
+- argocd-applications/oidc-authservice.yaml
+
 ## Kubeflow  
 - argocd-applications/central-dashboard.yaml
 - argocd-applications/profile-controller_access-management.yaml

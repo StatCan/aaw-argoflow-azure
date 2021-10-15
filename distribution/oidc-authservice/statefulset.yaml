@@ -24,7 +24,7 @@ spec:
           containerPort: 8080
         envFrom: 
           - configMapRef:
-            name: oidc-authservice-parameters
+              name: oidc-authservice-parameters
         volumeMounts:
           - name: data
             mountPath: /var/lib/authservice  

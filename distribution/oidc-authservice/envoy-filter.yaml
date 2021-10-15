@@ -3,11 +3,44 @@ kind: EnvoyFilter
 metadata:
   name: authn-filter
 spec:
-  #changed from workloadLabels
-  #gatewaySelector variable does not seem to exist anymore
   workloadSelector:
     labels:
-      istio: ingressgateway-kubeflow 
+      istio: ingressgateway-kubeflow #below has to change possiblyu due to indent errors 'listener'
+  configPatches:
+    - applyTo: HTTP_FILTER
+      match:
+        context: GATEWAY
+        listener: #indented, 1.3 has this on 'match' level
+          filterChain:
+            filter: #indented one more because listener wansnt
+              name: "envoy.http_connection_manager"
+              subFilter:
+                name: ""
+      patch:
+        # For some reason, INSERT_FIRST doesn't work
+        operation: INSERT_BEFORE
+        value:
+          # See: https://www.envoyproxy.io/docs/envoy/v1.17.0/configuration/http/http_filters/ext_authz_filter#config-http-filters-ext-authz
+          name: "envoy.filters.http.ext_authz"
+          typed_config:
+            '@type': type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthz
+            http_service:
+              server_uri:
+                uri: http://$(AUTHSERVICE_SERVICE).$(AUTHSERVICE_NAMESPACE).svc.cluster.local
+                cluster: outbound|8080||$(AUTHSERVICE_SERVICE).$(AUTHSERVICE_NAMESPACE).svc.cluster.local
+                timeout: 10s
+              authorization_request:
+                allowed_headers:
+                  patterns:
+                    # XXX: MUST be lowercase!
+                    - exact: "authorization"
+                    - exact: "cookie"
+                    - exact: "x-auth-token"
+              authorization_response:
+                allowed_upstream_headers:
+                  patterns:
+                    - exact: "kubeflow-userid"
+
 # Notes 
 # Taken from https://github.com/StatCan/aaw-kubeflow-manifest/blob/master/kustomize/oidc-authservice/envoy-filter.yaml
 # 1.3 https://github.com/kubeflow/manifests/blob/v1.3-branch/common/oidc-authservice/base/envoy-filter.yaml

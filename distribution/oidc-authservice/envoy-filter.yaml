@@ -14,8 +14,9 @@ spec:
           filterChain:
             filter: #indented one more because listener wansnt
               name: "envoy.http_connection_manager"
-              subFilter:
-                name: ""
+              #subFilter: # what the heck is htis suppossed to be, it's not "required" at least
+              #  name: "" #comment out this subfilter for now see what happens, it works with this commented
+              # I think this is just here to let others now, its not necessary for us i think 
       patch:
         # For some reason, INSERT_FIRST doesn't work
         operation: INSERT_BEFORE

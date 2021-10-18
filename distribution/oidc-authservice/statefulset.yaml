@@ -17,6 +17,7 @@ spec:
     spec:
       containers:
       - name: authservice
+      #try this docker.io/library/oidc-authservice
         image: k8scc01covidacr.azurecr.io/oidc-authservice:latest
         imagePullPolicy: Always
         ports:
@@ -34,8 +35,10 @@ spec:
               port: 8081
       securityContext:
         fsGroup: 111
-      imagePullSecrets:
-        - name: k8scc01covidacr-registry-connection
+      #imagePullSecrets: 
+      #  - name: k8scc01covidacr-registry-connection
+      #this imagepullsecrets is something we want deployed but not when we are testing locally.
+      # would need to create our own secrets to put whenever we do something locally.
       volumes:
         - name: data
           persistentVolumeClaim:

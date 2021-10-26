@@ -2,9 +2,5 @@
   {
     "op": "remove",
     "path": "/metadata/labels/control-plane"
-  },
-  {
-    "op": "remove",
-    "path": "/metadata/labels/katib-metricscollector-injection"
   }
 ]

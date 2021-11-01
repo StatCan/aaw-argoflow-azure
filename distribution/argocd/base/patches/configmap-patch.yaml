@@ -4,6 +4,7 @@ metadata:
   name: argocd-cm
 data:
   kustomize.version.v4.0.5: /custom-tools/kustomize_4_0_5
+  kustomize.buildOptions.v4.0.5: --load-restrictor LoadRestrictionsNone
   resource.compareoptions: |
     ignoreAggregatedRoles: true
   resource.customizations: |

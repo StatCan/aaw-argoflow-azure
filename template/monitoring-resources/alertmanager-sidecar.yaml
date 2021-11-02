@@ -15,4 +15,4 @@ spec:
       number: 9094
       protocol: TCP
       name: tcp-mesh
-    defaultEndpoint: 0.0.0.0:9094
+    defaultEndpoint: 127.0.0.1:9094

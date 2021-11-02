@@ -7,6 +7,9 @@ spec:
   workloadSelector:
     labels:
       app: alertmanager
+  egress:
+  - hosts:
+    - "*/*" 
   ingress:
   - port:
       number: 9094

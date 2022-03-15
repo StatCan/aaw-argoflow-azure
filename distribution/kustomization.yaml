@@ -30,20 +30,20 @@ resources:
 - argocd-applications/oidc-authservice.yaml
 
 ## Kubeflow  
-- argocd-applications/central-dashboard.yaml
-- argocd-applications/profile-controller_access-management.yaml
-- argocd-applications/profiles.yaml
-- argocd-applications/kubeflow-namespace.yaml
-- argocd-applications/kubeflow-roles.yaml
-- argocd-applications/pipelines.yaml
-- argocd-applications/katib.yaml
-- argocd-applications/kfserving.yaml
-- argocd-applications/seldon.yaml
-- argocd-applications/pod-defaults.yaml
-- argocd-applications/jupyter-web-app.yaml
-- argocd-applications/notebook-controller.yaml
-- argocd-applications/prob-notebook-controller.yaml
-#- argocd-applications/spark-operator.yaml
+# - argocd-applications/central-dashboard.yaml
+# - argocd-applications/profile-controller_access-management.yaml
+# - argocd-applications/profiles.yaml
+# - argocd-applications/kubeflow-namespace.yaml
+# - argocd-applications/kubeflow-roles.yaml
+# - argocd-applications/pipelines.yaml
+# - argocd-applications/katib.yaml
+# - argocd-applications/kfserving.yaml
+# - argocd-applications/seldon.yaml
+# - argocd-applications/pod-defaults.yaml
+# - argocd-applications/jupyter-web-app.yaml
+# - argocd-applications/notebook-controller.yaml
+# - argocd-applications/prob-notebook-controller.yaml
+# - argocd-applications/spark-operator.yaml
 
 # - argocd-applications/tensorboard-controller.yaml
 # - argocd-applications/tensorboards-web-app.yaml
@@ -60,10 +60,10 @@ resources:
 - argocd-applications/sealed-secrets.yaml
 
 ## Monitoring and logging
-- argocd-applications/monitoring-resources.yaml
-- argocd-applications/kube-prometheus-stack.yaml
+# - argocd-applications/monitoring-resources.yaml
+# - argocd-applications/kube-prometheus-stack.yaml
 # - argocd-applications/loki-stack.yaml
-- argocd-applications/kiali.yaml
+# - argocd-applications/kiali.yaml
 # - argocd-applications/kubecost.yaml
 
 ## Contrib

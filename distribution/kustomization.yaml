@@ -5,7 +5,7 @@ resources:
 ## Common
 # - argocd-applications/metallb.yaml
 # - argocd-applications/rook-ceph.yaml
-# - argocd-applications/nginx.yaml
+- argocd-applications/nginx.yaml
 # - argocd-applications/nvidia-gpu-operator.yaml
 - argocd-applications/argocd.yaml
 - argocd-applications/istio-operator.yaml
@@ -23,11 +23,11 @@ resources:
 
 # Pick *one* of the following applications:  
 # - argocd-applications/oidc-auth-on-cluster-dex.yaml
-- argocd-applications/oidc-auth-on-cluster-keycloak.yaml
+# - argocd-applications/oidc-auth-on-cluster-keycloak.yaml
 # - argocd-applications/oidc-auth-external.yaml
 
 ##OIDC
-- argocd-applications/oidc-authservice.yaml
+# - argocd-applications/oidc-authservice.yaml
 
 ## Kubeflow  
 # - argocd-applications/central-dashboard.yaml

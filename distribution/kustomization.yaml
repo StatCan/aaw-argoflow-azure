@@ -76,3 +76,6 @@ resources:
 - argocd-applications/trino-system.yaml
 ## Hive
 - argocd-applications/hive-metastore.yaml
+
+## Minio
+- argocd-applications/minio-system.yaml

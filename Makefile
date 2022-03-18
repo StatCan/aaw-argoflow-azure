@@ -249,9 +249,6 @@ custom-images:
 
 deploy: kind gitserver deploy-argocd deploy-kubeflow deploy-metallb
 	sleep 30
-	kubectl create namespace trino-system
-	kubectl create namespace hive-system
-	kubectl create namespace minio-system
 	@while kubectl get svc --all-namespaces | grep -q '<pending>'; do \
 		echo "Waiting for LoadBalancers to get IPs assigned..."; \
 		sleep 30; \

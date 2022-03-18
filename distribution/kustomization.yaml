@@ -79,3 +79,6 @@ resources:
 
 ## Minio
 - argocd-applications/minio-system.yaml
+
+## Namespace-controller
+- argocd-applications/namespace-controller.yaml

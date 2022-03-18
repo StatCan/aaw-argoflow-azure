@@ -1,15 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  labels:
+    app.kubernetes.io/instance: aaw-daaas-system
   name: namespace-controller
-  namespace: argocd
+  namespace: daaas-system
 spec:
   destination:
-    namespace: daaas-system
     server: 'https://kubernetes.default.svc'
+    name: in-cluster
+    namespace: daaas-system
+  project: default
   source:
-    repoURL: 'https://statcan.github.io/charts'
-    targetRevision: 0.0.2
     chart: namespace-controller
     helm:
       releaseName: namespace-controller
@@ -17,7 +19,8 @@ spec:
         image:
           repository: k8scc01covidacr.azurecr.io/namespace-controller
           tag: 949b8b02d837fcebd64a135d103e61486185b1f4
-  project: default
+    repoURL: 'https://statcan.github.io/charts'
+    targetRevision: 0.0.2
   syncPolicy:
     automated:
       prune: true

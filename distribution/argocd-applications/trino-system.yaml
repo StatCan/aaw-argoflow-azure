@@ -1,26 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: namespace-controller
+  name: trino
   namespace: argocd
 spec:
-  destination:
-    namespace: daaas-system
-    server: 'https://kubernetes.default.svc'
-  source:
-    repoURL: 'https://statcan.github.io/charts'
-    targetRevision: 0.0.2
-    chart: namespace-controller
-    helm:
-      releaseName: namespace-controller
-      values: |
-        image:
-          repository: k8scc01covidacr.azurecr.io/namespace-controller
-          tag: 949b8b02d837fcebd64a135d103e61486185b1f4
   project: default
+  source:
+    repoURL: 'https://github.com/StatCan/aaw-trino.git'
+    path: trino
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: trino-system
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

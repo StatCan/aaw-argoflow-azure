@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: hive
+  name: hive-metastore
   namespace: argocd
 spec:
   project: default

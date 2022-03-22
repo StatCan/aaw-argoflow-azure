@@ -57,13 +57,13 @@ resources:
 ## System
 # - argocd-applications/external-dns.yaml
 # - argocd-applications/cloudflare-secrets.yaml
-- argocd-applications/sealed-secrets.yaml
+# - argocd-applications/sealed-secrets.yaml
 
 ## Monitoring and logging
 # - argocd-applications/monitoring-resources.yaml
 # - argocd-applications/kube-prometheus-stack.yaml
 # - argocd-applications/loki-stack.yaml
-# - argocd-applications/kiali.yaml
+- argocd-applications/kiali.yaml
 # - argocd-applications/kubecost.yaml
 
 ## Contrib
@@ -81,4 +81,4 @@ resources:
 - argocd-applications/minio-system.yaml
 
 ## Namespace-controller
-- argocd-applications/namespace-controller.yaml
+# - argocd-applications/namespace-controller.yaml

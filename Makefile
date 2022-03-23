@@ -187,7 +187,7 @@ kind:
 gitserver:
 	docker build . -t gitserver:latest -f kind/gitserver.Dockerfile
 	kind load docker-image gitserver:latest --name $(KIND_NAME)
-
+	kind load docker-image k8scc01covidacr.azurecr.io/namespace-controller:949b8b02d837fcebd64a135d103e61486185b1f4 --name argoflow
 	kubectl create namespace git || true
 	kubectl apply -f kind/gitserver/Deployment.yaml
 	kubectl apply -f kind/gitserver/Service.yaml

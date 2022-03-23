@@ -4,12 +4,11 @@ metadata:
   labels:
     app.kubernetes.io/instance: aaw-daaas-system
   name: namespace-controller
-  namespace: daaas-system
+  namespace: argocd
 spec:
   destination:
     server: 'https://kubernetes.default.svc'
-    name: in-cluster
-    namespace: daaas-system
+    namespace: trino-system
   project: default
   source:
     chart: namespace-controller

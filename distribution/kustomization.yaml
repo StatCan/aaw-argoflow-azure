@@ -10,7 +10,7 @@ resources:
 - argocd-applications/argocd.yaml
 - argocd-applications/istio-operator.yaml
 - argocd-applications/istio.yaml
-- argocd-applications/istio-resources.yaml
+# - argocd-applications/istio-resources.yaml
 #- argocd-applications/knative.yaml
 
 # Pick *one* of the following applications
@@ -81,4 +81,4 @@ resources:
 - argocd-applications/minio-system.yaml
 
 ## Namespace-controller
-# - argocd-applications/namespace-controller.yaml
+- argocd-applications/namespace-controller.yaml
